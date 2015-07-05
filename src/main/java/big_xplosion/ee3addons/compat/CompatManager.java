@@ -1,5 +1,6 @@
 package big_xplosion.ee3addons.compat;
 
+import com.google.common.base.Stopwatch;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.google.common.reflect.ClassPath;
@@ -13,6 +14,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class CompatManager {
 
@@ -23,6 +25,9 @@ public class CompatManager {
 	}
 
 	public void setupModules() {
+		FMLLog.info("Compat Module loading started");
+		Stopwatch watch = Stopwatch.createStarted();
+
 		try {
 			for (ClassPath.ClassInfo info : ClassPath.from(CompatManager.class.getClassLoader()).getTopLevelClassesRecursive(CompatManager.class.getPackage().getName()))
 				if (info.getSimpleName().startsWith("Compat") && !info.getSimpleName().startsWith("CompatModule") && !info.getSimpleName().startsWith("CompatManager"))
@@ -30,6 +35,8 @@ public class CompatManager {
 		} catch (IOException e) {
 			throw new RuntimeException("Unknown error while searching for modules!", e);
 		}
+
+		FMLLog.info("Compat Module loading ended (took %s)", watch.elapsed(TimeUnit.MILLISECONDS));
 	}
 
 	private void registerModule(ClassPath.ClassInfo moduleClassInfo) {
@@ -45,17 +52,17 @@ public class CompatManager {
 				for (String mod : requiredMods.split(",")) {
 					if (!Loader.isModLoaded(mod)) {
 						enabled = false;
-						FMLLog.info(String.format("[EE3Addons] CompatModule '%s' is missing a dependency: '%s'! This module will not be loaded.", id, mod));
+						FMLLog.info("[EE3Addons] CompatModule '%s' is missing a dependency: '%s'! This module will not be loaded.", id, mod);
 						break;
 					}
 				}
 			}
 			if (enabled) {
-				FMLLog.info(String.format("[EE3Addons] CompatModule '%s' activated.", id));
+				FMLLog.info("[EE3Addons] CompatModule '%s' loaded.", id);
 				modules.put(id, moduleClass.newInstance());
 			}
 		} catch (Throwable t) {
-			FMLLog.info(String.format("[EE3Addons] CompatModule '%s' failed to load: '%s'!", moduleClassInfo.getName(), t.getMessage()));
+			FMLLog.info("[EE3Addons] CompatModule '%s' failed to load: '%s'!", moduleClassInfo.getName(), t.getMessage());
 		}
 	}
 
