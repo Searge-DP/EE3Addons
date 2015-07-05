@@ -1,0 +1,11 @@
+[
+{
+  "modid": "EE3Addons",
+  "name": "EE3 Addons",
+  "description": "some small and miscellaneous addons to EE3, most notably AE2 integration ",
+  "version": "$version",
+  "mcversion": "$mcversion",
+  "authorList": ["big_Xplosion"],
+  "credits": "big_Xplosion and to Pahimar for (finally) releasing EE3"
+}
+]

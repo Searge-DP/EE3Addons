@@ -64,8 +64,13 @@ task checkCurse() << {
     }
 }
 
-dependencies {
+repositories {
+    mavenLocal()
+}
 
+dependencies {
+    compile "appeng:appliedenergistics2:${config.version.ae2}:dev"
+    compile "com.pahimar.ee3:EquivalentExchange3:${config.version.minecraft}-${config.version.ee3}:dev"
 }
 
 processResources
