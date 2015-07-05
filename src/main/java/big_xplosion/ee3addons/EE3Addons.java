@@ -2,6 +2,7 @@ package big_xplosion.ee3addons;
 
 import big_xplosion.ee3addons.compat.CompatManager;
 import big_xplosion.ee3addons.configuration.Config;
+import big_xplosion.ee3addons.core.Content;
 import big_xplosion.ee3addons.lib.Reference;
 import big_xplosion.ee3addons.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
@@ -26,6 +27,8 @@ public class EE3Addons {
 		manager.setupModules();
 
 		Config.init(new File(event.getModConfigurationDirectory(), "EE3Addons" + File.separator + "ee3Addons.cfg"));
+
+		Content.preInit();
 
 		manager.preInit(event);
 	}

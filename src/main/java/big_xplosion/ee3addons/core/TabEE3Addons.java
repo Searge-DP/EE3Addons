@@ -13,6 +13,6 @@ public class TabEE3Addons extends CreativeTabs {
 
 	@Override
 	public Item getTabIconItem() {
-		return null;
+		return Item.getItemFromBlock(Content.emchanter);
 	}
 }
