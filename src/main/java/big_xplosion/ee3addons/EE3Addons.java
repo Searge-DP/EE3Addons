@@ -1,13 +1,14 @@
 package big_xplosion.ee3addons;
 
+import big_xplosion.ee3addons.compat.CompatManager;
+import big_xplosion.ee3addons.configuration.Config;
 import big_xplosion.ee3addons.lib.Reference;
 import big_xplosion.ee3addons.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.*;
+
+import java.io.File;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class EE3Addons {
@@ -18,19 +19,30 @@ public class EE3Addons {
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
 	public static CommonProxy proxy;
 
+	public CompatManager manager = new CompatManager();
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		manager.setupModules();
 
+		Config.init(new File(event.getModConfigurationDirectory(), "EE3Addons" + File.separator + "ee3Addons.cfg"));
+
+		manager.preInit(event);
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-
+		manager.init(event);
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		manager.postInit(event);
+	}
 
+	@Mod.EventHandler
+	public void doneLoading(FMLLoadCompleteEvent event) {
+		manager.doneLoadingEvent(event);
 	}
 
 	@Mod.EventHandler
