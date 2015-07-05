@@ -10,7 +10,7 @@ import cpw.mods.fml.common.event.*;
 
 import java.io.File;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies = Reference.DEPENDENCIES)
 public class EE3Addons {
 
 	@Mod.Instance(Reference.MOD_ID)
