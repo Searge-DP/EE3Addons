@@ -18,7 +18,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public abstract class GuiBase extends GuiContainer {
 
-	public static final ResourceLocation PLAYER_INV_TEXTURE = new ResourceLocation("bcadditions:textures/gui/guiPlayerInv.png");
+	public static final ResourceLocation PLAYER_INV_TEXTURE = new ResourceLocation("EE3Addons:textures/gui/guiPlayerInv.png");
 	public final List<WidgetBase> widgets = Lists.newArrayList();
 	public final int xSizePlayerInv = 176;
 	public final int ySizePlayerInv = 100;
