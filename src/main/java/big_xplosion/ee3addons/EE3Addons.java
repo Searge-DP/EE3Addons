@@ -30,6 +30,8 @@ public class EE3Addons {
 
 		Content.preInit();
 
+		proxy.preInit();
+
 		manager.preInit(event);
 	}
 
@@ -37,12 +39,16 @@ public class EE3Addons {
 	public void init(FMLInitializationEvent event) {
 		Content.init();
 
+		proxy.init();
+
 		manager.init(event);
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		Content.postInit();
+
+		proxy.postInit();
 
 		manager.postInit(event);
 	}
