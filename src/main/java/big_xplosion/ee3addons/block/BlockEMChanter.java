@@ -12,7 +12,7 @@ public class BlockEMChanter extends Block implements ITileEntityProvider {
 
 	public BlockEMChanter() {
 		super(Material.rock);
-		this.setBlockName("emchanter");
+		this.setBlockName("enchanter");
 		this.setCreativeTab(TabEE3Addons.tab);
 	}
 
