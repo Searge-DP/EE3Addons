@@ -35,11 +35,15 @@ public class EE3Addons {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
+		Content.init();
+
 		manager.init(event);
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		Content.postInit();
+
 		manager.postInit(event);
 	}
 

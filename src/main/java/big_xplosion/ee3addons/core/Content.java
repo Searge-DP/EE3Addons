@@ -13,6 +13,14 @@ public class Content {
 		initBlocks();
 	}
 
+	public static void init() {
+
+	}
+
+	public static void postInit() {
+
+	}
+
 	private static void initBlocks() {
 		emchanter = new BlockEMChanter();
 
