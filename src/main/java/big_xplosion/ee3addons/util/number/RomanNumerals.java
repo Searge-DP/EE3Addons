@@ -15,7 +15,7 @@ public class RomanNumerals {
 		return builder.toString();
 	}
 
-	protected static int appendRomanNumeral(int remaining, int value, String symbol, StringBuilder builder) {
+	private static int appendRomanNumeral(int remaining, int value, String symbol, StringBuilder builder) {
 		while (remaining >= value) {
 			builder.append(symbol);
 			remaining -= value;
