@@ -8,12 +8,12 @@ import net.minecraft.enchantment.Enchantment;
 
 public class Content {
 
-	public static Block emchanter;
+	public static Block enchanter;
 
 	public static void preInit() {
 		initBlocks();
 
-		//testEnchantmentEMCValues();
+		testEnchantmentEMCValues();
 	}
 
 	public static void init() {
@@ -25,9 +25,9 @@ public class Content {
 	}
 
 	private static void initBlocks() {
-		emchanter = new BlockEMChanter();
+		enchanter = new BlockEMChanter();
 
-		GameRegistry.registerBlock(emchanter, "emchanter");
+		GameRegistry.registerBlock(enchanter, "emchanter");
 
 		GameRegistry.registerTileEntity(TileEMChanter.class, "emchanter");
 	}
@@ -36,7 +36,7 @@ public class Content {
 		for (Enchantment ench : Enchantment.enchantmentsList) {
 			if (ench != null) {
 				for (int i = 1; i <= ench.getMaxLevel(); i++)
-					System.out.println(String.format("enchantment: %s	level: %s	value: %s", ench.getTranslatedName(i), i, TileEMChanter.ENCHANTMENT_EMC_BASE_COST / ench.getWeight() * i));
+					System.out.println(String.format("enchantment: %s	level: %s	value: %s", ench.getTranslatedName(i), i, (2000/ench.getWeight() * 10) + 10000 * i/10)); //still not sure what the formula will be
 			}
 		}
 	}
