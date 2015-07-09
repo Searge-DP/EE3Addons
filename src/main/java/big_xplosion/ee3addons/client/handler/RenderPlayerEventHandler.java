@@ -18,6 +18,11 @@ public class RenderPlayerEventHandler {
 		if (!(event.entity instanceof EntityPlayer))
 			return;
 
+		EntityPlayer player = (EntityPlayer) event.entity;
+
+		if (player.getHideCape())
+			return;
+
 		if (!UUIDs.FLUCTUATING_BODY_RENDER.contains(UUIDUtil.getPlayerUUIDString((EntityPlayer) event.entity)))
 			return;
 
